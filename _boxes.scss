@@ -1,0 +1,64 @@
+@use "sass:meta";
+
+$margins-properties: (
+    "-m-": "margin", "-mt-":"margin-top", "-mb-":"margin-bottom", "-ml-":"margin-left", "-mr-":"margin-right", 
+    "-mx-": ("margin-left", "margin-right"), "-my-": ("margin-top", "margin-bottom"),
+    "-p-": "padding", "-pt-":"padding-top", "-pb-":"padding-bottom", "-pl-":"padding-left", "pr-":"padding-right", 
+    "-px-": ("padding-left", "padding-right"), "-py-": ("padding-top", "padding-bottom")
+);
+$margins-values: ( // 1, 2, 3, 4, 5 already defined by bootstrap
+    "6": 3.5rem, "7": 4.5rem, "8": 6rem, "9": 7rem, "10": 8rem, "11": 10rem, "12": 12rem, "13": 14rem
+);
+
+$grids-values: 1,2,3,4,5,6,7;
+$widths-values: 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100;
+
+@each $mediaPrefix, $constraint in $medias{
+    @media #{$constraint}{
+        //Grid
+        @each $grid-value in $grids-values{
+            .-grid-#{$mediaPrefix}#{$grid-value}{grid-template-columns: repeat($grid-value, 1fr)!important;}
+        }
+
+        //Margins
+        @each $marginPrefix, $margin-prop in $margins-properties{
+            @each $key, $value in $margins-values{
+                @if meta.type-of($margin-prop) == "list" {
+                    .#{$marginPrefix}#{$mediaPrefix}#{$key}{
+                        @each $prop in $margin-prop{
+                            #{$prop}: $value!important;
+                        }
+                    }
+                }@else{
+                    .#{$marginPrefix}#{$mediaPrefix}#{$key}{#{$margin-prop}: $value!important}
+                }
+            }
+        }
+        //Widths
+        @each $width-value in $widths-values{
+            .-w-#{$mediaPrefix}#{$width-value}{width: $width-value * 1%!important;}
+            .-h-#{$mediaPrefix}#{$width-value}{height: $width-value * 1%!important;}
+        }
+    }
+
+    
+}
+
+/** Info: The bellow properties don't add important to properties*/
+.flex-center{@include flex-center;}
+.flex-center-horizontal{@include flex-center-horizontal;}
+.flex-center-vertical{@include flex-center-vertical;}
+
+.bordered-rounded{
+    border-radius: 20px;
+    padding:2rem 1rem;
+    border:2px solid lightgray;
+    color:inherit;
+    text-decoration: none;
+    transition: all .3s ease;
+    &:hover{border-color:$primary-color;}
+}
+
+.box-shadow{
+    box-shadow: 1px 1px 3px rgba(black, .3);
+}

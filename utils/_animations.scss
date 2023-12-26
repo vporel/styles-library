@@ -1,0 +1,8 @@
+
+@mixin rotate-infinite($duration:2s){
+    animation: rotate $duration infinite linear;
+	@keyframes rotate{
+		from{transform:rotate(0);}
+		to{transform:rotate(360deg);}
+	}
+}

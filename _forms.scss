@@ -1,0 +1,29 @@
+.symfony-form{
+    > .alert-danger{ // Form errors
+        width:100%;
+    }
+}
+
+.form-select{
+    padding:.5rem .8rem;
+    font-size:1rem;
+}
+.form-control{
+    border:1px solid rgb(200,200,200);
+    padding:.8rem;
+    font-size:1rem;
+}
+
+.form-select, .form-control{
+    &:focus{
+        box-shadow: none;
+        border-color:$primary-color;
+    }
+}
+.form-control:focus{
+    color:darken($primary-color, 15%);
+}
+
+.form-error{
+    color: red;
+}

@@ -1,0 +1,68 @@
+$colorsMap: (
+    "primary": $primary-color,
+    "primary-light": lighten($primary-color, 10%),
+    "primary-dark": darken($primary-color, 10%),
+    "secondary": $secondary-color,
+    "secondary-light": lighten($secondary-color, 15%),
+    "secondary-dark":darken($secondary-color, 10%),
+    "white": white,
+    "black": black,
+    "gray": gray,
+    "lightgray": lightgray,
+    "red" : red,
+    "orange": orange,
+    "yellow": yellow,
+    "gold": gold,
+    "skyblue": skyblue,
+    "purple": purple,
+    "green": green,
+    "pink": pink,
+    "deeppink": deeppink,
+    "blue": blue,
+    "rgb50": _rgb(50), 
+    "rgb70": _rgb(70), 
+    "rgb100": _rgb(100), 
+    "rgb150": _rgb(150), 
+    "rgb200": _rgb(200), 
+    "rgb230": _rgb(230), 
+    "rgb235": _rgb(235), 
+    "rgb240": _rgb(240),
+    "rgb245": _rgb(245),
+    "rgb250": _rgb(250)
+);
+
+@each $mediaPrefix, $constraint in $medias{
+    @media #{$constraint}{
+        //Texts colors
+        .color-#{$mediaPrefix}inherit{color:inherit!important;}
+        .color-#{$mediaPrefix}text{color:$text-color!important;}
+        @each $suffix, $value in $colorsMap{
+            .color-#{$mediaPrefix}#{$suffix}{color:$value!important;}
+            [class~="hover:color-#{$mediaPrefix}#{$suffix}"]{transition: all .3s ease; &:hover{color:$value!important;}}
+            @for $i from 1 through 9{
+                .color-#{$mediaPrefix}#{$suffix}-op-0#{$i}{color:rgba($value, calc(0.1 * #{$i}))!important;}
+                [class~="hover:color-#{$mediaPrefix}#{$suffix}"]{transition: all .3s ease; &:hover{color:rgba($value, calc(0.1 * #{$i}))!important;}}
+            }
+            
+        }
+
+        //Backgrouns colors
+        @each $suffix, $value in $colorsMap{
+            .bg-#{$mediaPrefix}inherit{color:inherit!important;}
+            .bg-#{$mediaPrefix}text{color:$text-color!important;}
+            .bg-#{$mediaPrefix}#{$suffix}{background-color:$value!important;}
+            [class~="hover:hover:bg-#{$mediaPrefix}#{$suffix}"]{transition: all .3s ease; &:hover{background-color:$value!important;}}
+            @for $i from 1 through 9{
+                .bg-#{$mediaPrefix}#{$suffix}-op-0#{$i}{background-color:rgba($value, calc(0.1 * #{$i}))!important;}
+                [class~="hover:bg-#{$mediaPrefix}#{$suffix}"]{transition: all .3s ease; &:hover{background-color:rgba($value, calc(0.1 * #{$i}))!important;}}
+            }
+        }
+
+        .bg-#{$mediaPrefix}center{
+            background-position: center;
+        }
+        .bg-#{$mediaPrefix}start{
+            background-position: top left;
+        }
+    }
+}

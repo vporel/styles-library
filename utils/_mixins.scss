@@ -1,0 +1,85 @@
+
+@mixin background-image-cover($url){
+    background-image: url($url);
+	background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+@mixin background-image-center($url){
+    background-image: url($url);
+	background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+@mixin background-image-cover-center($url){
+    @include background-image-cover($url);
+    background-position: center;
+}
+
+@mixin darken-background($overlay-opacity: 0.5){
+    background-color: rgba(black, $overlay-opacity);
+    background-blend-mode: multiply;
+}
+
+@mixin flex-column{
+	display:flex;
+	flex-direction: column;
+}
+
+@mixin flex-center{
+	display:flex;
+	justify-content: center;
+	align-items:center;
+}
+
+@mixin flex-center-vertical{
+	display:flex;
+	align-items:center;
+}
+
+@mixin flex-center-horizontal{
+	display:flex;
+	justify-content:center;
+}
+
+@mixin position-fixed-spread{
+	position:fixed;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	z-index:15;
+}
+
+@mixin position-absolute-spread{
+	@include position-fixed-spread;
+	position:absolute;
+}
+
+@mixin square($size, $padding: 0px){
+	width:$size;
+	height:$size;
+	padding: $padding;
+}
+
+@mixin padding-y($value){
+	padding-top:$value;
+	padding-bottom:$value;
+}
+
+@mixin padding-x($value){
+	padding-left:$value;
+	padding-right:$value;
+}
+
+@mixin margin-y($value){
+	margin-top:$value;
+	margin-bottom:$value;
+}
+
+@mixin margin-x($value){
+	margin-left:$value;
+	margin-right:$value;
+}

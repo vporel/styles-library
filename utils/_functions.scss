@@ -1,0 +1,19 @@
+@use "sass:meta";
+
+
+/**
+ * Couleur rgb à partir d'une seule valeur qui sera prise pour r, g et b
+ * @param number $value
+ */
+@function _rgb($value){
+    @return rgb($value, $value, $value);
+}
+
+/**
+ * Couleur rgba à partir d'une seule valeur qui sera prise pour r, g et b
+ * @param number $value
+ * @param number $opacity
+ */
+ @function _rgba($value, $opacity){
+    @return rgba(_rgb($value), $opacity);
+}
